@@ -131,9 +131,9 @@ export default function Home(data) {
           <div onClick={() =>{router.push("/order")}} className={styles.navLink}>
             <AiOutlinePlusSquare className={styles.icon} />
           </div>
-          <div onClick={() =>{router.push("/order/search")}} className={styles.navLink}>
+          {/* <div onClick={() =>{router.push("/order/search")}} className={styles.navLink}>
             <AiOutlineSearch className={styles.icon} />
-          </div>
+          </div> */}
         </div>
       </main>
 

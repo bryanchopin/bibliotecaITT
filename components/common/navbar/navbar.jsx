@@ -37,7 +37,7 @@ function Navbar(){
   
   const navLinks = [
 	{id:"Inicio",title: "Inicio", path: "/"},
-	{id:"Búsqueda",title: "Búsqueda", path: "/order/search"},
+	// {id:"Búsqueda",title: "Búsqueda", path: "/order/search"},
 	{id:"Agregar",title: "Agregar", path: "/order"},
   ];
   return (

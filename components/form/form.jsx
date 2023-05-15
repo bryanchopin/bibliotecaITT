@@ -58,7 +58,7 @@ export default function Form() {
     IDForm.current = IDuserForm();
     dateOrder.current = dateByFormat();
     handleUpdateClientInfo();
-    // router.push("/");
+    router.push("/");
   };
 
   return (
