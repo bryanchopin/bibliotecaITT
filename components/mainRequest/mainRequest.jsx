@@ -32,16 +32,6 @@ export default function MainRequest({
     return tallaMasRepetida;
   };
 
-  // const dataOrder = {
-  //   id: dataContainer?.id ?? "No hay datos",
-  //   name: dataContainer?.name ?? "No hay datos",
-  //   teamName: dataContainer?.teamName ?? "No hay datos",
-  //   phone: dataContainer?.phone ?? "No hay datos",
-  //   email: dataContainer?.email ?? "No hay datos",
-  //   date: dataContainer?.date ?? "No hay datos",
-  //   players: dataContainer?.players ?? [],
-  // };
-
   const stateBanner = showDataContainer
     ? styles.requestContainer
     : styles.requestContainerOff;

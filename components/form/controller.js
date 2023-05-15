@@ -10,18 +10,11 @@ export const dateByFormat = () => {
 export const IDuserForm = () => {
   let idSource = uuidv4();
   let idShort = idSource.substring(0, 8);
-  const IDForm = "FS-" + idShort;
+  const IDForm = "Book-" + idShort;
   return IDForm;
 };
 
-// export const sendData = async (data) => {
-//   try {
-//     await axios.post("/api/order", data);
-    
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+
 
 export const sendData = async (data) => {
   try {
@@ -32,14 +25,5 @@ export const sendData = async (data) => {
     // console.log(error);
   }
 }
-
-export const sendEmail = async (data) => {
-  try {
-    await axios.post("/api/email", data);
-  } catch (error) {
-    // console.log(error);
-  }
-}
-
 
 

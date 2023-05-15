@@ -20,7 +20,7 @@ const DataContainer = dynamic(
 );
 
 export async function getServerSideProps() {
-  const res = await fetch("https://www.fistorsport.com/api/order");
+  const res = await fetch("https://biblioteca-itt.vercel.app/api/order");
   const data = await res.json();
 
   return {
@@ -43,29 +43,30 @@ export default function Home(data) {
 
   const [dataOrder, setDataOrder] = useState({
     id: "",
-    name: "",
-    teamName: "",
-    phone: "",
-    email: "",
+    bookName: "",
+    genre: "",
+    agePublication: "",
+    author: "",
+    priceBook: "",
     date: "",
-    players: [],
   });
 
-  const getOrderData = (id) => {
-    const orderData = dataOrders.filter((item) => item.id === id);
-    if (orderData.length === 0) {
-      return;
-    }
-    setDataOrder({
-      id: orderData[0].id,
-      name: orderData[0].name,
-      teamName: orderData[0].teamName,
-      phone: orderData[0].phone,
-      email: orderData[0].email,
-      date: orderData[0].date,
-      players: orderData[0].players,
-    });
-  };
+
+  // const getOrderData = (id) => {
+  //   const orderData = dataOrders.filter((item) => item.id === id);
+  //   if (orderData.length === 0) {
+  //     return;
+  //   }
+  //   setDataOrder({
+  //     id: orderData[0].id,
+  //     name: orderData[0].name,
+  //     teamName: orderData[0].teamName,
+  //     phone: orderData[0].phone,
+  //     email: orderData[0].email,
+  //     date: orderData[0].date,
+  //     players: orderData[0].players,
+  //   });
+  // };
 
   const handleOrderEvent = (e) => {
     console.log(e.target.id);
@@ -117,7 +118,6 @@ export default function Home(data) {
                 return (
                   <DataContainer
                     data={item}
-                    handlePrintEvent={handlePrintEvent}
                     handleShowData={handleOrderEvent}
                     handleModal={handleModal}
                   />

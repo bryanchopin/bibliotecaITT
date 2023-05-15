@@ -1,5 +1,5 @@
 import { dbConnect } from "../../../utils/dbConnection"
-import Order from "../../../models/order";
+import Book from "../../../models/book";
 
 dbConnect();
 
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false, error: error.message });
       }
       try {
-        const order = await Order.create(body);
+        const order = await Book.create(body);
         order.save();
         res.status(201).json({ success: true, data: order });
         // return;
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
     case 'GET':
       try {
-        const orders = await Order.find({});
+        const orders = await Book.find({});
         res.status(200).json({ success: true, data: orders });
         return;
       } catch (error) {

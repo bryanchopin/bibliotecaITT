@@ -1,6 +1,6 @@
 import { Schema, models, model } from "mongoose";
 
-const orderSchema = new Schema({
+const bookSchema = new Schema({
     id: {
         type: String,
         required: true,
@@ -8,39 +8,34 @@ const orderSchema = new Schema({
         trim: true,
         unique: true,
     },
-    name: {
+    bookName: {
         type: String,
         required: true,
         trim: true,
         unique: false,
     },
-    teamName: {
+    genre: {
         type: String,
         required: true,
         trim: true,
         unique: false,
     },
-    email: {
-        type: String,
-        // required: true,
-        trim: true,
-        unique: false,
-    },
-    category: {
+    agePublication: {
         type: String,
         required: true,
         trim: true,
         unique: false,
     },
-    phone: {
+    author: {
         type: String,
-        // required: true,
+        required: true,
         trim: true,
         unique: false,
     },
-    players: {
-        type: Object,
+    priceBook: {
+        type: String,
         required: true,
+        trim: true,
         unique: false,
     },
     date: {
@@ -56,6 +51,6 @@ const orderSchema = new Schema({
 
 
 
-export default models.Order || model("Order", orderSchema);        
+export default models.book || model("book", bookSchema);        
 
 

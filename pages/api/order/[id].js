@@ -1,5 +1,5 @@
 import { dbConnect } from "../../../utils/dbConnection";
-import Order from "../../../models/order";
+import Book from "../../../models/book";
 import NextCors from "nextjs-cors";
 
 //Connect to database
@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   await NextCors(req, res, {
     // Options
     methods: ["GET", "DELETE", "POST", "OPTIONS", "PUT"],
-    origin: ["https://www.fistorsport.com"],
+    origin: ["https://biblioteca-itt.vercel.app"],
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   });
 
@@ -21,14 +21,14 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false, error: "Need to introduce an id" });
       }
       try {
-        const order = await Order.findOne({ id: id });
-        if (!order) {
-          res.status(400).json({ success: false, error: "Order not found" });
+        const Book = await Book.findOne({ id: id });
+        if (!Book) {
+          res.status(400).json({ success: false, error: "Book not found" });
         }
-        res.status(200).json({ success: true, data: order });
+        res.status(200).json({ success: true, data: Book });
         return;
       } catch (error) {
-        res.status(400).json({ success: false, error: "Order not found" });
+        res.status(400).json({ success: false, error: "Book not found" });
       }
       break;
 
@@ -37,14 +37,14 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false, error: "Need to introduce an id" });
       }
       try {
-        const deleteOrder = await Order.findOneAndDelete({ id: id });
-        if (!deleteOrder) {
-          res.status(400).json({ success: false, error: "Order not found" });
+        const deleteBook = await Book.findOneAndDelete({ id: id });
+        if (!deleteBook) {
+          res.status(400).json({ success: false, error: "Book not found" });
         }
-        res.status(200).json({ success: true, data: deleteOrder });
+        res.status(200).json({ success: true, data: deleteBook });
         return;
       } catch (error) {
-        res.status(400).json({ success: false, error: "Order not found" });
+        res.status(400).json({ success: false, error: "Book not found" });
       }
       break;
 

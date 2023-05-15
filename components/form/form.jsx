@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./form.module.css";
-import { sendEmail } from "../../controllers/controller";
 import { useRouter } from "next/router";
-import { BiArrowBack } from "react-icons/bi";
-import MainModal from "../../components/mainModal/mainModal";
 import { dateByFormat, IDuserForm, sendData } from "./controller";
 
 export default function Form() {
@@ -15,12 +12,11 @@ export default function Form() {
 
   const [clientsInfo, setClientsInfo] = useState({
     id: "",
-    name: "",
-    teamName: "",
-    email: "",
-    category: "",
-    phone: "",
-    players: [],
+    bookName: "",
+    genre: "",
+    agePublication: "",
+    author: "",
+    priceBook: "",
     date: "",
   });
 
@@ -30,18 +26,12 @@ export default function Form() {
     if (dataSendend) {
       // console.log(clientsInfo);
       if (sendData(clientsInfo)) {
-        sendEmail(clientMessageInfo);
+        // sendEmail(clientMessageInfo);
       }
       handleShowModal();
       // sendWhatsapp(clientMessageWhatsapp);
     }
   }, [dataSendend]);
-
-  const clientMessageInfo = {
-    message: `Hola  ${clientsInfo.name}, tu pedido ha sido recibido, tu folio de seguimiento es: ${clientsInfo.id}, puedes consultar el estatus de tu pedido en https://www.fistorsport.com/order/search`,
-    email: clientsInfo.email,
-  };
-
 
   // HANDLE FUNCTIONS
 
@@ -54,28 +44,22 @@ export default function Form() {
     setDataSendend(true);
   };
 
-
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
-
 
   const handleSetDataClient = (e) => {
     setClientsInfo({ ...clientsInfo, [e.target.name]: e.target.value });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (clientsInfo.players.length === 0) {
-      alert("Debes agregar al menos un jugador");
-      return;
-    }
+
     IDForm.current = IDuserForm();
     dateOrder.current = dateByFormat();
     handleUpdateClientInfo();
+    // router.push("/");
   };
-
 
   return (
     <>
@@ -89,8 +73,8 @@ export default function Form() {
               value={clientsInfo.name}
               onChange={handleSetDataClient}
               required
-              placeholder="Nombre Completo"
-              name="name"
+              placeholder="Nombre del libro"
+              name="bookName"
               type="text"
             />
 
@@ -98,40 +82,45 @@ export default function Form() {
               required
               value={clientsInfo.teamName}
               onChange={handleSetDataClient}
-              placeholder="Nombre del equipo"
-              name="teamName"
+              placeholder="Género"
+              name="genre"
               type="text"
             />
 
             <input
+              required
               value={clientsInfo.email}
               onChange={handleSetDataClient}
-              placeholder="Correo Electrónico"
-              name="email"
-              type="email"
+              placeholder="Año de publicación"
+              name="agePublication"
+              type="text"
             />
 
             <input
               required
               value={clientsInfo.category}
               onChange={handleSetDataClient}
-              placeholder="Categoría"
-              name="category"
+              placeholder="Autor"
+              name="author"
               type="text"
             />
 
             <input
+              required
               value={clientsInfo.phone}
               onChange={handleSetDataClient}
-              placeholder="Télefono"
-              name="phone"
+              placeholder="Costo de renta"
+              name="priceBook"
               type="text"
+            />
+            <input
+              className={styles.submitBtn}
+              value="Completar registro"
+              form="formData"
+              type="submit"
             />
           </form>
         </div>
-
-        {/* SECOND FORM */}
-
       </div>
     </>
   );
