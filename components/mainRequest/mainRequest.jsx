@@ -1,8 +1,9 @@
 import styles from "./mainRequest.module.css";
 import React from "react";
-import { AiOutlineUser, AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
-import { BiBaseball } from "react-icons/bi";
-import { BsCalendar2Date } from "react-icons/bs";
+import { BsCalendar2Date, BsFillTrashFill } from "react-icons/bs";
+import {FaGenderless} from "react-icons/fa";
+import {ImPriceTag }  from "react-icons/im";
+import { AiOutlineBook, AiOutlineKey, AiFillEye, AiOutlineUser} from "react-icons/ai";
 import { useState } from "react";
 import DataContainer from "../dataContainer/dataContainer";
 
@@ -11,41 +12,11 @@ export default function MainRequest({
   handleFunction,
   dataContainer,
 }) {
-  const obtenerTallaMasRepetida = () => {
-    const tallas = dataContainer.players.map((player) => player.size);
-    const ocurrencias = {};
-
-    tallas.forEach((talla) => {
-      ocurrencias[talla] = ocurrencias[talla] ? ocurrencias[talla] + 1 : 1;
-    });
-
-    let tallaMasRepetida = null;
-    let mayorOcurrencias = 0;
-
-    for (const talla in ocurrencias) {
-      if (ocurrencias[talla] > mayorOcurrencias) {
-        tallaMasRepetida = talla;
-        mayorOcurrencias = ocurrencias[talla];
-      }
-    }
-
-    return tallaMasRepetida;
-  };
 
   const stateBanner = showDataContainer
     ? styles.requestContainer
     : styles.requestContainerOff;
 
-  const tallaMasRepetida = obtenerTallaMasRepetida();
-  const jugadoresOrdenados = [...dataContainer.players].sort((a, b) => {
-    if (a.size === tallaMasRepetida && b.size !== tallaMasRepetida) {
-      return -1;
-    } else if (a.size !== tallaMasRepetida && b.size === tallaMasRepetida) {
-      return 1;
-    } else {
-      return a.size.localeCompare(b.size);
-    }
-  });
 
   return (
     <div className={stateBanner}>
@@ -55,41 +26,47 @@ export default function MainRequest({
       <div className={styles.container}>
         <div className={styles.orderInfoClienContainer}>
           <div className={styles.orderInfoClient}>
-            <div className={styles.textInfo}>
-              <span>
-                <AiOutlineUser />
-              </span>
-              {dataContainer.name}
-            </div>
-            <div className={styles.textInfo}>
-              <span>
-                <BiBaseball />
-              </span>
-              {dataContainer.teamName}
-            </div>
-            <div className={styles.textInfo}>
-              <span>
-                <AiOutlinePhone />
-              </span>
-              {dataContainer.phone}
-            </div>
-            <div className={styles.textInfo}>
-              <span>
-                <AiOutlineMail />
-              </span>
-              {dataContainer.email}
-            </div>
-            <div className={styles.textInfo}>
-              <span>
-                <BsCalendar2Date />
-              </span>
-              {dataContainer.date}
-            </div>
+          <div className={styles.textInfo}>
+            <span>
+              <AiOutlineBook />
+            </span>
+            {dataContainer.bookName}
+          </div>
+          <div className={styles.textInfo}>
+            <span>
+              <AiOutlineUser />
+            </span>
+            {dataContainer.author}
+          </div>
+          <div className={styles.textInfo}>
+            <span>
+              <ImPriceTag />
+            </span>
+            {dataContainer.priceBook}
+          </div>
+          <div className={styles.textInfo}>
+            <span>
+              <FaGenderless />
+            </span>
+            {dataContainer.genre}
+          </div>
+          <div className={styles.textInfo}>
+            <span>
+              <AiOutlineKey />
+            </span>
+            {dataContainer.id}
+          </div>
+          <div className={styles.textInfo}>
+            <span>
+              <BsCalendar2Date />
+            </span>
+            {dataContainer.agePublication}
+          </div>
           </div>
           <div className={styles.optionsContainer}>
             <div className={styles.dataContainer}>
               <div className={styles.dataNameContainer}>
-                <p>PORTERO</p>
+                <p>Libro</p>
                 <div className={styles.dataFocusContainer}>
                   {/* {dataContainer.players &&
                   dataContainer.players.clothes &&
@@ -104,9 +81,9 @@ export default function MainRequest({
             </div>
             <div className={styles.dataContainer}>
               <div className={styles.dataNameContainer}>
-                <p>TALLA</p>
+                <p>Disponible</p>
                 <div className={styles.dataFocusContainer}>
-                  <p>{tallaMasRepetida}</p>
+                  {/* <p>{tallaMasRepetida}</p> */}
                 </div>
               </div>
             </div>
@@ -119,31 +96,6 @@ export default function MainRequest({
               </div>
             </div>
           </div>
-        </div>
-        <div className={styles.orderInfoContainer}>
-          <table>
-            <thead>
-              <tr>
-                <th>Talla</th>
-                <th>Numero</th>
-                <th>Nombre</th>
-                <th>Prenda</th>
-              </tr>
-            </thead>
-            <tbody>
-              {React.Children.toArray(
-                jugadoresOrdenados.map((player, id) => (
-                  // mostrar por talla mas repetida
-                  <tr key={id}>
-                    <td>{player.size}</td>
-                    <td>{player.number}</td>
-                    <td>{player.name}</td>
-                    <td>{player.clothes}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
         </div>
       </div>
     </div>

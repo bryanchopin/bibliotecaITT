@@ -1,43 +1,49 @@
 import styles from "./dataContainer.module.css";
-import { BiBaseball } from "react-icons/bi";
 import { BsCalendar2Date, BsFillTrashFill } from "react-icons/bs";
-import { AiFillPrinter, AiFillEye, AiOutlinePhone, AiOutlineUser, AiOutlineMail} from "react-icons/ai";
+import {FaGenderless} from "react-icons/fa";
+import {ImPriceTag }  from "react-icons/im";
+import { AiOutlineBook, AiOutlineKey, AiFillEye, AiOutlineUser} from "react-icons/ai";
 
 export default function DataContainer({ data, handlePrintEvent, handleShowData, handleModal }) {
-
   return (
     <>
       <div className={styles.orderContainer}>
         <div className={styles.infoOrderContainer}>
           <div className={styles.textInfo}>
             <span>
+              <AiOutlineBook />
+            </span>
+            {data.bookName}
+          </div>
+          <div className={styles.textInfo}>
+            <span>
               <AiOutlineUser />
             </span>
-            {data.name}
+            {data.author}
           </div>
           <div className={styles.textInfo}>
             <span>
-              <BiBaseball />
+              <ImPriceTag />
             </span>
-            {data.teamName}
+            {data.priceBook}
           </div>
           <div className={styles.textInfo}>
             <span>
-              <AiOutlinePhone />
+              <FaGenderless />
             </span>
-            {data.phone}
+            {data.genre}
           </div>
           <div className={styles.textInfo}>
             <span>
-              <AiOutlineMail />
+              <AiOutlineKey />
             </span>
-            {data.email}
+            {data.id}
           </div>
           <div className={styles.textInfo}>
             <span>
               <BsCalendar2Date />
             </span>
-            {data.date}
+            {data.agePublication}
           </div>
         </div>
         <div className={styles.controlsContainer}>
