@@ -21,14 +21,14 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false, error: "Need to introduce an id" });
       }
       try {
-        const Book = await Book.findOne({ id: id });
-        if (!Book) {
-          res.status(400).json({ success: false, error: "Book not found" });
+        const book = await Book.findOne({ id: id });
+        if (!book) {
+          res.status(400).json({ success: false, error: "Book not found 400 status" });
         }
-        res.status(200).json({ success: true, data: Book });
+        res.status(200).json({ success: true, data: book });
         return;
       } catch (error) {
-        res.status(400).json({ success: false, error: "Book not found" });
+        res.status(400).json({ success: false, error: "Book not found defecto" });
       }
       break;
 
