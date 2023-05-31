@@ -116,7 +116,7 @@ export default function Search({ order, error }) {
 
 export async function getServerSideProps({ query: { id } }) {
   // const res = await axios.get(`https://www.fistorsport.com/api/order/${id}`);
-  const res = await axios.get(`https://biblioteca-itt.vercel.app/api/order${id}`);
+  const res = await axios.get(`/api/order/${id}`);
   const data = await res.data;
   const order = data.data;
   console.log(order);
